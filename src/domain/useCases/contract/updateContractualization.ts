@@ -1,10 +1,10 @@
 import { Contract } from "@/domain/entities/contract";
 
 type UpdateContract = {
-    contract: Contract,
-    id: number
-}
+  contract: Contract;
+  id: number;
+};
 
-export interface DomainUpdateContract{
-    handle: ({ contract, id }: UpdateContract) => Promise<Contract>
+export interface DomainUpdateContract {
+  handle: (updateContract: UpdateContract) => Promise<Contract>;
 }

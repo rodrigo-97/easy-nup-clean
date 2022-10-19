@@ -1,3 +1,3 @@
 export interface DomainMeUseCase {
-    handle: () => Promise<void>
+  handle: () => Promise<void>;
 }

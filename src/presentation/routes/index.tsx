@@ -7,16 +7,16 @@ import { Dashboard } from "@/presentation/pages/Dashboard";
 import { Projects } from "@/presentation/pages/Projects";
 
 export function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/">
-                <Route index element={<Dashboard />} />
-                <Route path="contracts" element={<Contracts />} />
-                <Route path="projects" element={<Projects />} />
-                <Route path="analisys" element={<Analisys />} />
-                <Route path="analysts" element={<Analysts />} />
-                <Route path="clients" element={<Clients />} />
-            </Route>
-        </Routes>
-    )
+  return (
+    <Routes>
+      <Route path="/">
+        <Route index element={<Dashboard />} />
+        <Route path="contracts" element={<Contracts />} />
+        <Route path="projects" element={<Projects />} />
+        <Route path="analisys" element={<Analisys />} />
+        <Route path="analysts" element={<Analysts />} />
+        <Route path="clients" element={<Clients />} />
+      </Route>
+    </Routes>
+  );
 }

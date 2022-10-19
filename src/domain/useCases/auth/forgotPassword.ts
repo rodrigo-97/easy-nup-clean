@@ -1,7 +1,7 @@
 type ForgotPassword = {
-    email: string
-}
+  email: string;
+};
 
 export interface DomainForgotPasswordUseCase {
-    handle: ({ email }: ForgotPassword) => Promise<void>
+  handle: (forgotPassword: ForgotPassword) => Promise<void>;
 }

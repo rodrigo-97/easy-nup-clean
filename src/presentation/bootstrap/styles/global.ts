@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
- 
+import { createGlobalStyle } from "styled-components";
+
 export const GlobalStyle = createGlobalStyle`
   td, th {
     padding: .5rem 1rem;

@@ -1,3 +1,3 @@
 export interface DomainDeleteContractUseCase {
-    handle: (id: number) => Promise<void>
+  handle: (id: number) => Promise<void>;
 }

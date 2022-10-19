@@ -1,1 +1,7 @@
-export type Colors = 'primary' | 'secondary' | 'info' | 'warning' | 'danger' | 'success'
+export type Colors =
+  | "primary"
+  | "secondary"
+  | "info"
+  | "warning"
+  | "danger"
+  | "success";

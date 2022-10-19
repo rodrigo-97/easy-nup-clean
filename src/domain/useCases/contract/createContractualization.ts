@@ -1,5 +1,5 @@
 import { Contract } from "@/domain/entities/contract";
 
 export interface DomainCreateContract {
-    handle: (contract: Contract) => Promise<Contract>
+  handle: (contract: Contract) => Promise<Contract>;
 }
