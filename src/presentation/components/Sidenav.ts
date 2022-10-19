@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Sidenav = styled.aside`
     width: 300px;
     padding: 0 16px 32px;
-    min-height: calc(92vh - 64px);
+    min-height: calc(95vh - 64px);
     background-color: ${(props) => props.theme.primary};
     color: ${(props) => props.theme.inverted};
     transition: all ease-in-out 500ms;
