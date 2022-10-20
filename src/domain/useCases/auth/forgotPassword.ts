@@ -1,7 +1,3 @@
-type ForgotPassword = {
-  email: string;
-};
-
-export interface DomainForgotPasswordUseCase {
-  handle: (forgotPassword: ForgotPassword) => Promise<void>;
+export interface RemoteDomainForgotPasswordUseCase {
+  handle: (email: string) => Promise<void>;
 }

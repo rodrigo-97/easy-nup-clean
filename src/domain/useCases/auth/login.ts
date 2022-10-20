@@ -1,8 +1,8 @@
-type Login = {
+export type Login = {
   email: string;
   password: string;
 };
 
-export interface DomainLoginUseCase {
+export interface RemoteDomainLoginUseCase {
   handle: (login: Login) => Promise<void>;
 }

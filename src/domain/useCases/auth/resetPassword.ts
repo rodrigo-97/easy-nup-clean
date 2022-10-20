@@ -5,6 +5,6 @@ type ResetPassword = {
   token: string;
 };
 
-export interface DomainResetPasswordUseCase {
+export interface RemoteDomainResetPasswordUseCase {
   handle: (resetPassword: ResetPassword) => Promise<void>;
 }

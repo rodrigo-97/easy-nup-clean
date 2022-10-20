@@ -17,6 +17,8 @@ export const Button = styled.button<Props>`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  display: flex;
+  justify-content: center;
 
   :hover {
     transform: translate(0, -0.2rem);

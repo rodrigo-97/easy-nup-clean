@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 type Props = {
   hasErrors?: boolean;
+  fullWidth?: boolean;
 };
 
 export const Input = styled.input<Props>`
   padding: 0.5rem 0.8rem;
+  width: ${(props) => props.fullWidth && "100%"};
   height: 2rem;
   border-radius: 8px;
   outline: none;

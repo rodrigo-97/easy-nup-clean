@@ -1,3 +1,3 @@
-export interface DomainLogoutUseCase {
+export interface RemoteDomainLogoutUseCase {
   handle: () => Promise<void>;
 }

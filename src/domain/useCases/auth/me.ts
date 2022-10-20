@@ -1,3 +1,3 @@
-export interface DomainMeUseCase {
+export interface RemoteDomainMeUseCase {
   handle: () => Promise<void>;
 }

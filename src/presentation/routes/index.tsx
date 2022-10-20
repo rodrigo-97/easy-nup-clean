@@ -5,10 +5,14 @@ import { Clients } from "@/presentation/pages/Clients";
 import { Contracts } from "@/presentation/pages/Contracts";
 import { Dashboard } from "@/presentation/pages/Dashboard";
 import { Projects } from "@/presentation/pages/Projects";
+import { Login } from "../pages/Login";
 
 export function AppRoutes() {
   return (
     <Routes>
+      <Route path="auth">
+        <Route path="login" element={<Login />} />
+      </Route>
       <Route path="/">
         <Route index element={<Dashboard />} />
         <Route path="contracts" element={<Contracts />} />
