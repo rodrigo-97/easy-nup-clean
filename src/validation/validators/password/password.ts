@@ -1,5 +1,5 @@
 import { PasswordError } from "@/validation/errors/password";
-import { FieldValidation } from "../../contracts/fieldValidation";
+import { FieldValidation } from "@/validation/contracts/fieldValidation";
 
 export class PasswordValidator implements FieldValidation {
   constructor(readonly field: string) {}

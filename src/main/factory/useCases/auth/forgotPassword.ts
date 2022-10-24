@@ -1,6 +1,6 @@
 import { DataForgotPasswordUseCase } from "@/data/useCases/auth/remoteForgotPassword";
-import { makeAxiosHttpClient } from "../../http/axiosHttpClient";
-import { makePath } from "../../http/makePath";
+import { makeAxiosHttpClient } from "@/main/factory/http/axiosHttpClient";
+import { makePath } from "@/main/factory/http/makePath";
 
 const url = makePath("/forget-password");
 export const makeRemoteForgotPassword = () =>
