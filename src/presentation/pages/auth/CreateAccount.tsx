@@ -1,12 +1,12 @@
+import { LoginContainer } from "@/presentation/components/auth/loginContainer";
+import { AlignCenter } from "@/presentation/components/shared/AlignCenter";
+import { Button } from "@/presentation/components/shared/Button";
+import { Center } from "@/presentation/components/shared/Center";
+import { Input } from "@/presentation/components/shared/Input";
+import { Link } from "@/presentation/components/shared/Link";
+import { Row } from "@/presentation/components/shared/Row";
+import { Spacing } from "@/presentation/components/shared/Spacing";
 import { useNavigate } from "react-router-dom";
-import { LoginContainer } from "../components/auth/loginContainer";
-import { AlignCenter } from "../components/shared/AlignCenter";
-import { Button } from "../components/shared/Button";
-import { Center } from "../components/shared/Center";
-import { Input } from "../components/shared/Input";
-import { Link } from "../components/shared/Link";
-import { Row } from "../components/shared/Row";
-import { Spacing } from "../components/shared/Spacing";
 
 export function CreateAccount() {
   const navigate = useNavigate();

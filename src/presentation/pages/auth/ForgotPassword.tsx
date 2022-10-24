@@ -1,17 +1,17 @@
 import { DataForgotPasswordUseCase } from "@/data/useCases/auth/remoteForgotPassword";
+import { LoginContainer } from "@/presentation/components/auth/loginContainer";
+import { AlignCenter } from "@/presentation/components/shared/AlignCenter";
+import { Button } from "@/presentation/components/shared/Button";
+import { Center } from "@/presentation/components/shared/Center";
+import { ErrorMessage } from "@/presentation/components/shared/ErrorMessage";
+import { If } from "@/presentation/components/shared/If";
+import { Input } from "@/presentation/components/shared/Input";
+import { Link } from "@/presentation/components/shared/Link";
+import { Row } from "@/presentation/components/shared/Row";
+import { Spacing } from "@/presentation/components/shared/Spacing";
 import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginContainer } from "../components/auth/loginContainer";
-import { AlignCenter } from "../components/shared/AlignCenter";
-import { Button } from "../components/shared/Button";
-import { Center } from "../components/shared/Center";
-import { ErrorMessage } from "../components/shared/ErrorMessage";
-import { If } from "../components/shared/If";
-import { Input } from "../components/shared/Input";
-import { Link } from "../components/shared/Link";
-import { Row } from "../components/shared/Row";
-import { Spacing } from "../components/shared/Spacing";
 
 type Props = {
   forgotPasswordUsecase: DataForgotPasswordUseCase;

@@ -1,5 +1,5 @@
 import { makeRemoteLogin } from "@/main/factory/useCases/auth/remoteLogin";
-import { Login } from "@/presentation/pages/Login";
+import { Login } from "@/presentation/pages/auth/Login";
 import { ValidationBuilder } from "@/validation/builder/validationBuilder";
 import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
 

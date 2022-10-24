@@ -1,5 +1,5 @@
 import { makeRemoteForgotPassword } from "@/main/factory/useCases/auth/forgotPassword";
-import { ForgotPassword } from "@/presentation/pages/ForgotPassword";
+import { ForgotPassword } from "@/presentation/pages/auth/ForgotPassword";
 import { ValidationBuilder } from "@/validation/builder/validationBuilder";
 import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
 
