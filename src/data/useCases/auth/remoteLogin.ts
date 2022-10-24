@@ -3,23 +3,30 @@ import {
   DataHttpVerbs,
   DataUsedHttpStatusCode,
 } from "@/data/contracts/http";
-import { CouldNotLogin } from "@/domain/errors/useCases/auth/login";
-import { RemoteDomainLoginUseCase, Login } from "@/domain/useCases/auth/login";
+import { CouldNotForgetPassword } from "@/domain/errors/useCases/auth/forgotPassword";
+import {
+  DomainLoginResponse,
+  Login,
+  RemoteDomainLoginUseCase,
+} from "@/domain/useCases/auth/login";
 
 export class DataLoginUseCase implements RemoteDomainLoginUseCase {
-  constructor(private readonly httpClient: DataHttpClient) {}
+  constructor(
+    private readonly httpClient: DataHttpClient,
+    private readonly path: string
+  ) {}
 
-  async handle(login: Login): Promise<void> {
-    const { status } = await this.httpClient.handle({
+  async handle(login: Login): Promise<DomainLoginResponse> {
+    const { status, data } = await this.httpClient.handle({
       data: login,
       method: DataHttpVerbs.post,
-      path: "/login",
+      path: this.path,
     });
 
     if (status === DataUsedHttpStatusCode.ok) {
-      return Promise.resolve();
+      return Promise.resolve(data);
     }
 
-    return Promise.reject(new CouldNotLogin());
+    return Promise.reject(new CouldNotForgetPassword());
   }
 }

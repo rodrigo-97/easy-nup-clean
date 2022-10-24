@@ -1,59 +1,148 @@
-import { makeRemoteLogin } from "@/main/factory/useCases/auth/remoteLogin";
-import { useEffect, useState } from "react";
+import { DataLoginUseCase } from "@/data/useCases/auth/remoteLogin";
+import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoginContainer } from "../components/auth/loginContainer";
-import { Base } from "../components/Base";
+import { AlignCenter } from "../components/shared/AlignCenter";
 import { AlignEnd } from "../components/shared/AlignEnd";
 import { Button } from "../components/shared/Button";
 import { Center } from "../components/shared/Center";
+import { ErrorMessage } from "../components/shared/ErrorMessage";
+import { If } from "../components/shared/If";
 import { Input } from "../components/shared/Input";
 import { Link } from "../components/shared/Link";
 import { Row } from "../components/shared/Row";
 import { Spacing } from "../components/shared/Spacing";
+import { useAuthStore } from "../stores/auth";
 
-export function Login() {
-  const [data, setData] = useState<any>();
+type Props = {
+  loginUsecase: DataLoginUseCase;
+  validation: ValidationComposite;
+};
+
+type Errors = {
+  email: string | null;
+  password: string | null;
+};
+
+export function Login({ loginUsecase, validation }: Props) {
+  const navigate = useNavigate();
+  const saveToken = useAuthStore((state) => state.setToken);
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
 
+  const [formTouched, setFormTouched] = useState({
+    email: false,
+    password: false,
+  });
+
+  const [errors, setErrors] = useState<Errors>({
+    email: "",
+    password: "",
+  });
+
+  const [isFormIsValid, setIsFormValid] = useState(false);
+
   useEffect(() => {
-    const response = async () =>
-      await makeRemoteLogin().handle({ email: "roeds", password: "asas" });
+    const emailError = validation.validate("email", form.email);
+    const passwordError = validation.validate("password", form.password);
 
-    setData(response);
+    setErrors({
+      email: emailError,
+      password: passwordError,
+    });
+  }, [form.email, form.password, validation]);
 
-    return () => {
-      response;
-    };
-  }, []);
+  useEffect(() => {
+    const hasErrors = Object.values(errors).some(
+      (error) => typeof error === "string"
+    );
 
-  console.log(data);
+    if (hasErrors) {
+      setIsFormValid(false);
+    } else {
+      setIsFormValid(true);
+    }
+  }, [errors]);
+
+  function handleSubmit() {
+    loginUsecase.handle(form).then((res) => {
+      saveToken(res.token);
+    });
+  }
+
+  function onChange(e: React.ChangeEvent<HTMLInputElement>, key: string) {
+    setForm({
+      ...form,
+      [key]: e.target.value,
+    });
+
+    setFormTouched({
+      ...formTouched,
+      [key]: true,
+    });
+  }
 
   return (
     <Center>
       <LoginContainer>
-        <h2>Login</h2>
+        <AlignCenter>
+          <h2>Login</h2>
+        </AlignCenter>
 
         <Spacing size="xxl" />
-
         <Row wrap="wrap">
-          <Input fullWidth placeholder="E-mail" />
-          <Input fullWidth placeholder="Senha" />
+          <Input
+            fullWidth
+            placeholder="E-mail"
+            hasErrors={!!errors.email && formTouched.email}
+            onChange={(e) => onChange(e, "email")}
+          />
+          <If
+            condition={formTouched.email}
+            then={<ErrorMessage>{errors.email}</ErrorMessage>}
+          />
+
+          <Input
+            fullWidth
+            placeholder="Senha"
+            hasErrors={!!errors.password && formTouched.password}
+            type="password"
+            onChange={(e) => onChange(e, "password")}
+          />
+          <If
+            condition={formTouched.password}
+            then={<ErrorMessage>{errors.password}</ErrorMessage>}
+          />
+
           <AlignEnd>
-            <Link>Esqueci minha senha</Link>
+            <Link onClick={() => navigate("/auth/forgot-password")}>
+              Esqueci minha senha
+            </Link>
           </AlignEnd>
         </Row>
 
         <Spacing size="xxl" />
-        <Row wrap="wrap">
-          <Button color="primary" fullWidth>
-            Entrar
-          </Button>
-          <Button color="secondary" fullWidth>
+        <Button
+          color="primary"
+          fullWidth
+          onClick={handleSubmit}
+          disabled={!isFormIsValid}
+        >
+          Entrar
+        </Button>
+        <Spacing size="md" />
+        <AlignCenter>
+          <Link
+            color="secondary"
+            onClick={() => navigate("/auth/create-account")}
+          >
             Criar Conta
-          </Button>
-        </Row>
+          </Link>
+        </AlignCenter>
       </LoginContainer>
     </Center>
   );

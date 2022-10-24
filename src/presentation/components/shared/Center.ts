@@ -6,5 +6,5 @@ export const Center = styled.div`
   align-items: center;
   height: 100vh;
   color: ${(props) => props.theme.inverted};
-  background-color: ${(props) => props.theme.primary};
+  background-color: ${(props) => props.theme.secondary};
 `;

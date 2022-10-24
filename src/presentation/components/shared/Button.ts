@@ -24,4 +24,8 @@ export const Button = styled.button<Props>`
     transform: translate(0, -0.2rem);
     cursor: pointer;
   }
+
+  :disabled {
+    cursor: not-allowed;
+  }
 `;

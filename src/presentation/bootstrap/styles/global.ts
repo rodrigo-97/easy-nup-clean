@@ -10,4 +10,9 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     gap: 1rem;
   }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 99999999999s 0s, color 99999999999s 0s;
+  }
 `;

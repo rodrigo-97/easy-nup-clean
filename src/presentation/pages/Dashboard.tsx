@@ -1,4 +1,4 @@
-import { DashboardTile } from "../components/shared/DashboardTile";
+import { DashboardTile } from "../components/dashboard/DashboardTile";
 import { Row } from "../components/shared/Row";
 import { Scaffold } from "../components/shared/Scaffold";
 

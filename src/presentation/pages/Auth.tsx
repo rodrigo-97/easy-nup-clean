@@ -3,7 +3,10 @@ import { ThemeProvider } from "styled-components";
 import { usePersistedState } from "../hooks/usePersistedState";
 import { dark } from "../themes/dark";
 import { light } from "../themes/light";
+import { CreateAccount } from "./CreateAccount";
+import { ForgotPassword } from "./ForgotPassword";
 import { Login } from "./Login";
+import { ResetPassword } from "./ResetPassword";
 
 type Theme = "dark" | "light";
 
@@ -27,6 +30,9 @@ export function Auth() {
       <Routes>
         <Route path="auth">
           <Route path="login" element={<Login />} />
+          <Route path="create-account" element={<CreateAccount />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
         </Route>
         <Route path="*" element={<Navigate to="auth/login" replace />} />
       </Routes>

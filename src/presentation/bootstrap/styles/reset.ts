@@ -26,7 +26,6 @@ export const ResetStyle = createGlobalStyle`
     q,
     s,
     samp,
-    small,
     strike,
     strong,
     sub,
