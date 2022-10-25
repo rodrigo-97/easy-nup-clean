@@ -1,6 +1,7 @@
 import { FieldValidation } from "../contracts/fieldValidation";
 import { BetweenValuesValidator } from "../validators/betweenValues/betweenValues";
 import { EmailValidator } from "../validators/email/email";
+import { EqualToValidator } from "../validators/equalTo/equalTo";
 import { MinLengthValidator } from "../validators/minLength/minLength";
 import { PasswordValidator } from "../validators/password/password";
 import { RequiredFieldValidation } from "../validators/requiredField/requiredField";
@@ -39,6 +40,11 @@ export class ValidationBuilder {
 
   password(): ValidationBuilder {
     this.validations.push(new PasswordValidator(this.fieldName));
+    return this;
+  }
+
+  equalTo(otherFieldName: string): ValidationBuilder {
+    this.validations.push(new EqualToValidator(this.fieldName, otherFieldName));
     return this;
   }
 

@@ -2,15 +2,15 @@ import { sidenavTiles } from "@/presentation/constants/sidenavTiles";
 import { useTheme } from "@/presentation/stores/theme";
 import { ArrowLeft, Moon, Sun } from "phosphor-react";
 import React, { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
-import { Navbar } from "../navbar/Navbar";
-import { Sidenav } from "../sidenav/Sidenav";
-import { SidenavTile } from "../sidenav/SidenavTile";
-import { Button } from "./Button";
-import { Content } from "./Content";
-import { Core } from "./Core";
-import { Header } from "./Header";
-import { If } from "./If";
+import { Router, useNavigate } from "react-router-dom";
+import { Navbar } from "../../navbar/Navbar";
+import { Sidenav } from "../../sidenav/Sidenav";
+import { SidenavTile } from "../../sidenav/SidenavTile";
+import { Button } from "../Button";
+import { Content } from "../Content";
+import { Core } from "../Core";
+import { Header } from "../Header";
+import { If } from "../If";
 
 type Props = {
   title: string;

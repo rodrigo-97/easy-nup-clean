@@ -10,9 +10,6 @@ export function makeForgotPassword() {
   );
 
   return (
-    <ForgotPassword
-      forgotPasswordUsecase={remoteForgotPassword}
-      validation={validation}
-    />
+    <ForgotPassword useCase={remoteForgotPassword} validation={validation} />
   );
 }

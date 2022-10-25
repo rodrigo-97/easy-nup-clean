@@ -2,30 +2,30 @@ import { DataLoginUseCase } from "@/data/useCases/auth/remoteLogin";
 import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LoginContainer } from "../../components/auth/loginContainer";
-import { AlignCenter } from "../../components/shared/AlignCenter";
-import { AlignEnd } from "../../components/shared/AlignEnd";
-import { Button } from "../../components/shared/Button";
-import { Center } from "../../components/shared/Center";
-import { ErrorMessage } from "../../components/shared/ErrorMessage";
-import { If } from "../../components/shared/If";
-import { Input } from "../../components/shared/Input";
-import { Link } from "../../components/shared/Link";
-import { Row } from "../../components/shared/Row";
-import { Spacing } from "../../components/shared/Spacing";
-import { useAuthStore } from "../../stores/auth";
+import { LoginContainer } from "@/presentation/components/auth/loginContainer";
+import { AlignCenter } from "@/presentation/components/shared/AlignCenter";
+import { AlignEnd } from "@/presentation/components/shared/AlignEnd";
+import { Button } from "@/presentation/components/shared/Button";
+import { Center } from "@/presentation/components/shared/Center";
+import { ErrorMessage } from "@/presentation/components/shared/ErrorMessage";
+import { If } from "@/presentation/components/shared/If";
+import { Input } from "@/presentation/components/shared/Input";
+import { Link } from "@/presentation/components/shared/Link";
+import { Row } from "@/presentation/components/shared/Row";
+import { Spacing } from "@/presentation/components/shared/Spacing";
+import { useAuthStore } from "@/presentation/stores/auth";
 
 type Props = {
-  loginUsecase: DataLoginUseCase;
+  useCase: DataLoginUseCase;
   validation: ValidationComposite;
 };
 
-type Errors = {
+export type Errors = {
   email: string | null;
   password: string | null;
 };
 
-export function Login({ loginUsecase, validation }: Props) {
+export function Login({ useCase, validation }: Props) {
   const navigate = useNavigate();
   const saveToken = useAuthStore((state) => state.setToken);
 
@@ -69,7 +69,7 @@ export function Login({ loginUsecase, validation }: Props) {
   }, [errors]);
 
   function handleSubmit() {
-    loginUsecase.handle(form).then((res) => {
+    useCase.handle(form).then((res) => {
       saveToken(res.token);
     });
   }

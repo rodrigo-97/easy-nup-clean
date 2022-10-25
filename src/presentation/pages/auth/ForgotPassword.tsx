@@ -14,11 +14,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
-  forgotPasswordUsecase: DataForgotPasswordUseCase;
+  useCase: DataForgotPasswordUseCase;
   validation: ValidationComposite;
 };
 
-export function ForgotPassword({ forgotPasswordUsecase, validation }: Props) {
+export function ForgotPassword({ useCase, validation }: Props) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export function ForgotPassword({ forgotPasswordUsecase, validation }: Props) {
   }, [email, validation]);
 
   function handleSubmit() {
-    forgotPasswordUsecase.handle(email);
+    useCase.handle(email);
   }
 
   return (

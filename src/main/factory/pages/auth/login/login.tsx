@@ -10,5 +10,5 @@ export function makeLogin() {
     ...ValidationBuilder.field("password").required().password().build(),
   ]);
 
-  return <Login loginUsecase={remoteLogin} validation={validation} />;
+  return <Login useCase={remoteLogin} validation={validation} />;
 }
