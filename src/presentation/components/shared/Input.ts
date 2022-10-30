@@ -15,5 +15,5 @@ export const Input = styled.input<Props>`
   border-color: ${(props) => props.theme.colors.danger};
   background-color: ${(props) => props.theme.secondary};
   color: ${(props) => props.theme.inverted};
-  transition: all ease-in-out 500ms;
+  transition: all ease-in-out 300ms;
 `;

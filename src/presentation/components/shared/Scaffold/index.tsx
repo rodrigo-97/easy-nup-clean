@@ -68,7 +68,7 @@ export function Scaffold({ title, showBackArrow = false, body }: Props) {
                   size={25}
                   weight="bold"
                   onClick={handleGoBack}
-                  className="pointer"
+                  alt="pointer"
                 />
               }
             />

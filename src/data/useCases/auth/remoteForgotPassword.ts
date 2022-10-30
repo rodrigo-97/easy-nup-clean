@@ -7,12 +7,11 @@ import { CouldNotForgetPassword } from "@/domain/errors/useCases/auth/forgotPass
 import { RemoteDomainForgotPasswordUseCase } from "@/domain/useCases/auth/forgotPassword";
 
 export class DataForgotPasswordUseCase
-  implements RemoteDomainForgotPasswordUseCase
-{
+  implements RemoteDomainForgotPasswordUseCase {
   constructor(
     private readonly httpClient: DataHttpClient,
     private readonly path: string
-  ) {}
+  ) { }
 
   async handle(email: string): Promise<void> {
     const { status, data } = await this.httpClient.handle({

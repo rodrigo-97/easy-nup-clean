@@ -14,7 +14,7 @@ export class DataLoginUseCase implements RemoteDomainLoginUseCase {
   constructor(
     private readonly httpClient: DataHttpClient,
     private readonly path: string
-  ) {}
+  ) { }
 
   async handle(login: Login): Promise<DomainLoginResponse> {
     const { status, data } = await this.httpClient.handle({

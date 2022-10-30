@@ -10,12 +10,11 @@ import {
 } from "@/domain/useCases/auth/resetPassword";
 
 export class DataResetPasswordUseCase
-  implements RemoteDomainResetPasswordUseCase
-{
+  implements RemoteDomainResetPasswordUseCase {
   constructor(
     private readonly httpClient: DataHttpClient,
     private readonly path: string
-  ) {}
+  ) { }
 
   async handle(resetPassword: ResetPassword): Promise<void> {
     const { status, data } = await this.httpClient.handle({
