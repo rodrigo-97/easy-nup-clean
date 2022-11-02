@@ -9,33 +9,32 @@ import { Input } from "@/presentation/components/shared/Input";
 import { Link } from "@/presentation/components/shared/Link";
 import { Row } from "@/presentation/components/shared/Row";
 import { Spacing } from "@/presentation/components/shared/Spacing";
-import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
-import React, { useEffect, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 type Props = {
   useCase: DataForgotPasswordUseCase;
-  validation: ValidationComposite;
 };
 
-export function ForgotPassword({ useCase, validation }: Props) {
+export function ForgotPassword({ useCase }: Props) {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | null>("");
-  const [touched, setTouched] = useState(false);
+  const schema = Yup.object().shape({
+    email: Yup.string().required("Campo obrigatório").email("E-mail inválido"),
+  });
 
-  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value);
-    setTouched(true);
-  }
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+  } = useForm<{ email: string }>({
+    resolver: yupResolver(schema),
+    mode: "all",
+  });
 
-  useEffect(() => {
-    const error = validation.validate("email", email);
-    setError(error);
-  }, [email, validation]);
-
-  function handleSubmit() {
+  function onSubmit({ email }: { email: string }) {
     useCase.handle(email);
   }
 
@@ -51,12 +50,12 @@ export function ForgotPassword({ useCase, validation }: Props) {
           <Input
             fullWidth
             placeholder="E-mail"
-            onChange={onChange}
-            hasErrors={!!error && touched}
+            hasErrors={!!errors.email}
+            {...register("email")}
           />
           <If
-            condition={!!error && touched}
-            then={<ErrorMessage>{error}</ErrorMessage>}
+            condition={!!errors.email}
+            then={<ErrorMessage>{errors.email?.message}</ErrorMessage>}
           />
         </Row>
 
@@ -64,8 +63,8 @@ export function ForgotPassword({ useCase, validation }: Props) {
         <Button
           color="primary"
           fullWidth
-          disabled={!!error}
-          onClick={handleSubmit}
+          disabled={!isValid}
+          onClick={handleSubmit(onSubmit)}
         >
           Recuperar senha
         </Button>

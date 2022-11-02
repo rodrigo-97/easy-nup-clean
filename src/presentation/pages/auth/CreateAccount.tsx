@@ -8,74 +8,57 @@ import { Input } from "@/presentation/components/shared/Input";
 import { Link } from "@/presentation/components/shared/Link";
 import { Row } from "@/presentation/components/shared/Row";
 import { Spacing } from "@/presentation/components/shared/Spacing";
-import React, { useEffect, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 type Props = {
   useCase: DataCreateAccountUseCase;
 };
 
-export type Errors = {
-  email: string | null;
-  password: string | null;
-  confirmPassword: string | null;
-  name: string | null;
+export type Form = {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  name: string;
 };
 
 export function CreateAccount({ useCase }: Props) {
   const navigate = useNavigate();
 
-  const [isFormValid, setIsformValid] = useState(false);
+  const schema = Yup.object().shape({
+    email: Yup.string().required("Campo obrigatório").email("E-mail inválido"),
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    name: "",
+    name: Yup.string()
+      .required("Campoo obrigatório")
+      .min(3, "O nome precisa ter no mínimooo 3 caracteres"),
+    password: Yup.string()
+      .required("Campo obrigatório")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "A senha precisas de pelo menos: 1 caracter maiúsculoo, 1 caracter minúsculo, 1 dígito, 1 caracter especial e possuir pelo menos 8 caracteres no total"
+      ),
+    confirmPassword: Yup.string()
+      .required("Campo obrigatório")
+      .matches(
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+        "A senha precisas de pelo menos: 1 caracter maiúsculoo, 1 caracter minúsculo, 1 dígito, 1 caracter especial e possuir pelo menos 8 caracteres no total"
+      )
+      .oneOf([Yup.ref("password"), null], "As senhas estão diferentes"),
   });
 
-  const [errors, setErrors] = useState<Errors>({
-    email: "",
-    password: "",
-    confirmPassword: "",
-    name: "",
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+  } = useForm<Form>({
+    resolver: yupResolver(schema),
+    mode: "all",
   });
 
-  const [touched, setTouched] = useState({
-    email: false,
-    password: false,
-    confirmPassword: false,
-    name: false,
-  });
-
-  useEffect(() => { }, [form, validation]);
-
-  useEffect(() => {
-    const hasErrors = Object.values(errors).some(
-      (error) => typeof error === "string"
-    );
-
-    if (hasErrors) {
-      setIsformValid(false);
-    } else {
-      setIsformValid(true);
-    }
-  }, [errors]);
-
-  function onChange(e: React.ChangeEvent<HTMLInputElement>, key: string) {
-    setForm({
-      ...form,
-      [key]: e.target.value,
-    });
-
-    setTouched({
-      ...touched,
-      [key]: true,
-    });
-  }
-
-  function onSubmit() {
-    // useCase.handle(form);
+  function onSubmit(data: Form) {
+    useCase.handle(data);
   }
 
   return (
@@ -89,56 +72,40 @@ export function CreateAccount({ useCase }: Props) {
         <Row wrap="wrap">
           <FormGroup
             input={
-              <Input
-                fullWidth
-                placeholder="E-mail"
-                onChange={(e) => onChange(e, "email")}
-                hasErrors={!!errors.email && touched.email}
-              />
+              <Input fullWidth placeholder="E-mail" {...register("email")} />
             }
-            error={!!errors.email && touched.email}
-            errorMessage={errors.email}
           />
 
           <FormGroup
-            input={
-              <Input
-                fullWidth
-                placeholder="Nome"
-                onChange={(e) => onChange(e, "name")}
-                hasErrors={!!errors.name && touched.name}
-              />
-            }
-            error={!!errors.name && touched.name}
-            errorMessage={errors.name}
+            input={<Input fullWidth placeholder="Nome" {...register("name")} />}
           />
 
           <FormGroup
+            error={!!errors.password}
+            errorMessage={errors.password?.message}
             input={
               <Input
                 type="password"
                 fullWidth
                 placeholder="Senha"
-                onChange={(e) => onChange(e, "password")}
-                hasErrors={!!errors.password && touched.password}
+                hasErrors={!!errors.password}
+                {...register("password")}
               />
             }
-            error={!!errors.password && touched.password}
-            errorMessage={errors.password}
           />
 
           <FormGroup
+            error={!!errors.confirmPassword}
+            errorMessage={errors.confirmPassword?.message}
             input={
               <Input
                 type="password"
                 fullWidth
                 placeholder="Confirmar senha"
-                onChange={(e) => onChange(e, "confirmPassword")}
-                hasErrors={!!errors.confirmPassword && touched.confirmPassword}
+                hasErrors={!!errors.confirmPassword}
+                {...register("confirmPassword")}
               />
             }
-            error={!!errors.confirmPassword && touched.confirmPassword}
-            errorMessage={errors.confirmPassword}
           />
         </Row>
 
@@ -146,8 +113,8 @@ export function CreateAccount({ useCase }: Props) {
         <Button
           color="primary"
           fullWidth
-          // disabled={!isFormValid}
-          onClick={onSubmit}
+          disabled={!isValid}
+          onClick={handleSubmit(onSubmit)}
         >
           Criar conta
         </Button>

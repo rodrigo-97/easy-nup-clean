@@ -7,12 +7,10 @@ import { FormGroup } from "@/presentation/components/shared/FormGroup";
 import { Input } from "@/presentation/components/shared/Input";
 import { Row } from "@/presentation/components/shared/Row";
 import { Spacing } from "@/presentation/components/shared/Spacing";
-import { ValidationComposite } from "@/validation/validationComposite/validationComposite";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 type Props = {
   useCase: DataResetPasswordUseCase;
-  validation: ValidationComposite;
 };
 
 type Errors = {
@@ -21,7 +19,7 @@ type Errors = {
   password: string | null;
 };
 
-export function ResetPassword({ useCase, validation }: Props) {
+export function ResetPassword({ useCase }: Props) {
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -44,21 +42,6 @@ export function ResetPassword({ useCase, validation }: Props) {
     setForm({ ...form, [key]: e.target.value });
     setFormTouched({ ...formTouched, [key]: true });
   }
-
-  useEffect(() => {
-    const emailError = validation.validate("email", form.email);
-    const passwordError = validation.validate("password", form.password);
-    const confirmPasswordError = validation.validate(
-      "confirmPassword",
-      form.confirmPassword
-    );
-
-    setErrors({
-      confirmPassword: confirmPasswordError,
-      email: emailError,
-      password: passwordError,
-    });
-  }, [form, validation]);
 
   console.log(errors);
 
