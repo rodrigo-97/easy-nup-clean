@@ -8,6 +8,7 @@ import {
   SignOut,
   UsersThree,
 } from "phosphor-react";
+import React from "react";
 
 type SidenavTile = {
   icon: React.ElementType<IconProps>;
@@ -24,7 +25,7 @@ export const sidenavTiles: SidenavTile[] = [
   {
     icon: Folders,
     route: "contracts",
-    title: "Contratualizações",
+    title: "Contratos",
   },
   {
     icon: Kanban,

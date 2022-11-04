@@ -16,6 +16,7 @@ import { ErrorMessage } from "@/presentation/components/shared/ErrorMessage";
 import { If } from "@/presentation/components/shared/If";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 type Props = {
   useCase: DataLoginUseCase;
@@ -24,6 +25,7 @@ type Props = {
 export function Login({ useCase }: Props) {
   const navigate = useNavigate();
   const saveToken = useAuthStore((state) => state.setToken);
+  const [loading, setLoading] = useState(false);
 
   const schema = Yup.object().shape({
     email: Yup.string().required("Campo obrigatório").email("E-mail inválido"),
@@ -45,10 +47,14 @@ export function Login({ useCase }: Props) {
   });
 
   function onSubmit(data: Form) {
-    console.log(data);
-    useCase.handle(data).then((res) => {
-      saveToken(res.token);
-    });
+    setLoading(true);
+    useCase
+      .handle(data)
+      .then((res) => {
+        saveToken(res.token);
+        navigate("/");
+      })
+      .finally(() => setLoading(false));
   }
 
   return (
@@ -94,10 +100,10 @@ export function Login({ useCase }: Props) {
         <Button
           color="primary"
           fullWidth
-          disabled={!isValid}
+          disabled={!isValid || loading}
           onClick={handleSubmit(onSubmit)}
         >
-          Entrar
+          {loading ? "Entrando..." : "Entrar"}
         </Button>
         <Spacing size="md" />
         <AlignCenter>

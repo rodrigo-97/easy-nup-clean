@@ -14,7 +14,6 @@ type Props = {
 };
 
 export const Spacing = styled.div<Props>`
-  background-color: red;
   margin-top: ${(props) => Sizes[props.size]};
   margin-bottom: ${(props) => Sizes[props.size]};
 `;

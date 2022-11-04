@@ -23,7 +23,7 @@ export function Scaffold({ title, showBackArrow = false, body }: Props) {
   const { toggleTheme, theme } = useTheme();
 
   function handleNavigate(route: string) {
-    navigate(route);
+    navigate(`/${route}`);
   }
 
   function handleGoBack() {

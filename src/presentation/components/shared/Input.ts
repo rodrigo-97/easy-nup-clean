@@ -13,7 +13,7 @@ export const Input = styled.input<Props>`
   outline: none;
   border-width: ${(props) => (props.hasErrors ? "1px" : 0)};
   border-color: ${(props) => props.theme.colors.danger};
-  background-color: ${(props) => props.theme.secondary};
+  background-color: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.inverted};
   transition: all ease-in-out 300ms;
 `;

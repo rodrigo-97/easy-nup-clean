@@ -8,10 +8,38 @@ export function Dashboard() {
       title="Dashboard"
       body={
         <Row wrap="wrap">
-          <DashboardTile>Contratualizações 12</DashboardTile>
-          <DashboardTile>Contratualizações 12</DashboardTile>
-          <DashboardTile>Contratualizações 12</DashboardTile>
-          <DashboardTile>Contratualizações 12</DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
+          <DashboardTile>
+            <p>Teste</p>
+            <p>39</p>
+          </DashboardTile>
         </Row>
       }
     />

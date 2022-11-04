@@ -1,7 +1,7 @@
 export const light = {
   name: "light",
-  primary: "#fff",
-  secondary: "#f3f4f6",
+  primary: "#f3f4f6",
+  secondary: "#FFF",
   inverted: "#344767",
   colors: {
     danger: "#ef4444",

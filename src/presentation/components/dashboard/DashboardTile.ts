@@ -2,6 +2,8 @@ import { FontSizes } from "@/presentation/constants/fontSized";
 import styled from "styled-components";
 
 export const DashboardTile = styled.div`
+  width: 15rem;
+  display: flex;
   background-color: ${(props) => props.theme.colors.success};
   height: 3vh;
   padding: 16px;

@@ -1,6 +1,6 @@
 export const dark = {
   name: "dark",
-  primary: "#111827",
+  primary: "#334155",
   secondary: "#1f2937",
   inverted: "#f9fafb",
   colors: {
