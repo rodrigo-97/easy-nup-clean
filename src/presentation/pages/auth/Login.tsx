@@ -1,22 +1,22 @@
 import { DataLoginUseCase } from "@/data/useCases/auth/remoteLogin";
-import { LoginContainer } from "@/presentation/components/auth/loginContainer";
-import { AlignCenter } from "@/presentation/components/shared/AlignCenter/AlignCenter";
-import { AlignEnd } from "@/presentation/components/shared/AlignEnd/AlignEnd";
-import { Button } from "@/presentation/components/shared/Button/Button";
-import { Center } from "@/presentation/components/shared/Center/Center";
-import { Input } from "@/presentation/components/shared/Input/Input";
-import { Link } from "@/presentation/components/shared/Link/Link";
-import { Row } from "@/presentation/components/shared/Row/Row";
-import { Spacing } from "@/presentation/components/shared/Spacing/Spacing";
-import { useAuthStore } from "@/presentation/stores/auth";
-import { useForm } from "react-hook-form";
 import { Login as Form } from "@/domain/useCases/auth/login";
-import { useNavigate } from "react-router-dom";
-import { ErrorMessage } from "@/presentation/components/shared/ErrorMessage/ErrorMessage";
+import { LoginContainer } from "@/presentation/components/auth/loginContainer";
+import { AlignCenter } from "@/presentation/components/shared/AlignCenter";
+import { AlignEnd } from "@/presentation/components/shared/AlignEnd";
+import { Button } from "@/presentation/components/shared/Button";
+import { Center } from "@/presentation/components/shared/Center";
+import { ErrorMessage } from "@/presentation/components/shared/ErrorMessage";
 import { If } from "@/presentation/components/shared/If";
-import * as Yup from "yup";
+import { Input } from "@/presentation/components/shared/Input";
+import { Link } from "@/presentation/components/shared/Link";
+import { Row } from "@/presentation/components/shared/Row";
+import { Spacing } from "@/presentation/components/shared/Spacing";
+import { useAuthStore } from "@/presentation/stores/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
 
 type Props = {
   useCase: DataLoginUseCase;
