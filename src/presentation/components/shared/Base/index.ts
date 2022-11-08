@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BaseBackground } from "./BaseBackground";
+import { BaseBackground } from "../BaseBackground";
 
 export const Base = styled(BaseBackground)`
   min-height: 100vh;

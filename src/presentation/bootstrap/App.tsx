@@ -6,6 +6,7 @@ import { makeLogin } from "@/main/factory/pages/auth/login/login";
 import { makeResetPassword } from "@/main/factory/pages/auth/resetPassword/resetPassword";
 import { makeClients } from "@/main/factory/pages/clients";
 import { makeContracts } from "@/main/factory/pages/contracts";
+import { makeDashboard } from "@/main/factory/pages/dashboard";
 import { makeProjects } from "@/main/factory/pages/projects";
 import { dark } from "@/presentation/themes/dark";
 import { IconContext } from "phosphor-react";
@@ -25,7 +26,7 @@ function App() {
   const analisys = makeAnalisys();
   const analysts = makeAnalysts();
   const clients = makeClients();
-  const dashboard = makeClients();
+  const dashboard = makeDashboard();
 
   return (
     <div className="App">

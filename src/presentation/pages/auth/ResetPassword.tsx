@@ -1,12 +1,12 @@
 import { DataResetPasswordUseCase } from "@/data/useCases/auth/remoteResetPassword";
 import { LoginContainer } from "@/presentation/components/auth/loginContainer";
-import { AlignCenter } from "@/presentation/components/shared/AlignCenter";
-import { Button } from "@/presentation/components/shared/Button";
-import { Center } from "@/presentation/components/shared/Center";
+import { AlignCenter } from "@/presentation/components/shared/AlignCenter/AlignCenter";
+import { Button } from "@/presentation/components/shared/Button/Button";
+import { Center } from "@/presentation/components/shared/Center/Center";
 import { FormGroup } from "@/presentation/components/shared/FormGroup";
-import { Input } from "@/presentation/components/shared/Input";
-import { Row } from "@/presentation/components/shared/Row";
-import { Spacing } from "@/presentation/components/shared/Spacing";
+import { Input } from "@/presentation/components/shared/Input/Input";
+import { Row } from "@/presentation/components/shared/Row/Row";
+import { Spacing } from "@/presentation/components/shared/Spacing/Spacing";
 import React, { useState } from "react";
 
 type Props = {

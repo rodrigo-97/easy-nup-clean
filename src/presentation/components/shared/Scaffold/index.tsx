@@ -2,7 +2,7 @@ import { sidenavTiles } from "@/presentation/constants/sidenavTiles";
 import { useTheme } from "@/presentation/stores/theme";
 import { ArrowLeft, Moon, Sun } from "phosphor-react";
 import React, { Fragment } from "react";
-import { Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "../../navbar/Navbar";
 import { Sidenav } from "../../sidenav/Sidenav";
 import { SidenavTile } from "../../sidenav/SidenavTile";
@@ -65,10 +65,11 @@ export function Scaffold({ title, showBackArrow = false, body }: Props) {
               condition={showBackArrow}
               then={
                 <ArrowLeft
-                  size={25}
+                  size={40}
+                  className="pointer"
                   weight="bold"
                   onClick={handleGoBack}
-                  alt="pointer"
+                  alt="Seta para voltar"
                 />
               }
             />
