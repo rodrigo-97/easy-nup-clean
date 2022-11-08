@@ -1,3 +1,5 @@
+import { ContractsWrapper } from "../components/contracts/ContractsWrapper";
+import { ContractTile } from "../components/contracts";
 import { Scaffold } from "../components/shared/Scaffold";
 
 export function Contracts() {
@@ -6,9 +8,20 @@ export function Contracts() {
       title="Contratos"
       showBackArrow
       body={
-        <div
-          style={{ display: "flex", flex: 1, gap: "1rem", flexWrap: "wrap" }}
-        ></div>
+        <ContractsWrapper>
+          <ContractTile
+            finishDate={new Date()}
+            initialDate={new Date()}
+            status="asasas"
+            title="Teste"
+          />
+          <ContractTile
+            finishDate={new Date()}
+            initialDate={new Date()}
+            status="asasas"
+            title="Teste"
+          />
+        </ContractsWrapper>
       }
     />
   );
